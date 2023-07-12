@@ -1,19 +1,19 @@
-function CalculateTotal(items, tax, discount) {
+function calculateTotal(items,{tax=0, discount=0}={} ) {
 
-  var totalValue = 0;
+  let totalValue = 0;
 
   for(var i = 0; i < items.length; i++) 
   {
     totalValue += items[i];
   }
-
   totalValue += totalValue * tax;
-
-  discount ? totalValue -= totalValue * discount : totalValue;
-
+  totalValue -= totalValue * discount
   return totalValue.toFixed(2);
 }
+const options={
+  tax : 0.05,
+  discount : 0.10
+}
+const itemsPrices = [10, 20, 30];
 
-var itemsPrices = [10, 20, 30], tax = 0.05, discount = 0.10;
-
-console.log(`Total: ${CalculateTotal(itemsPrices, tax, discount)}`);
+console.log(`Total: ${calculateTotal(itemsPrices, tax, discount)}`);
